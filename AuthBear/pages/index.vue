@@ -2,7 +2,7 @@
   <ClientOnly>
     <TotpCodeForm v-if="enterTOTP === true" />
   </ClientOnly>
-  <h1>Hello World</h1>
+  
   <button
     @click="
       () => {
@@ -17,7 +17,5 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-//let enterTOTP = useTOTPEntry();
 const enterTOTP = ref(false);
 </script>
