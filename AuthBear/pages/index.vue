@@ -17,5 +17,6 @@
 
 <script setup>
 
-const enterTOTP = ref(false);
+let enterTOTP = useTOTPEntry();
+
 </script>
