@@ -25,14 +25,12 @@ function onDecode(result) {
     if (match) {
         totp_key.value = match[3];
         account_name.value = match[4] + "(" + match[1] + ")";
-        console.log(totp_key.value);
-        console.log(account_name.value);
-
+       
         scan_on.value = false;
         addTOTP();
 
     }
-    
+    else console.log("error")
 }
 
 </script>
