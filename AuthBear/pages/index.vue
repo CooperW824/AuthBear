@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <TotpEntry v-if="enterTOTP === true" />
+    <TotpCodeForm v-if="enterTOTP === true" />
   </ClientOnly>
 
   <button
