@@ -3,8 +3,8 @@ import jsSHA from "jssha";
 import getMachineId from "./machineID";
 
 export default function appendKey(key: TOTPKey, keys: TOTPKey[]){
-    console.log(keys);
     const updatedKeys = keys.concat(key);
+    console.log(updatedKeys);
     saveKeys(updatedKeys);
     return updatedKeys;
 }

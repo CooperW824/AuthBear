@@ -2,7 +2,7 @@
   <ClientOnly>
     <TotpEntry v-if="enterTOTP === true" />
   </ClientOnly>
-  
+
   <button
     @click="
       () => {
@@ -17,5 +17,12 @@
 </template>
 
 <script setup>
+import getKeys from "~/totpFunctions/getKeys";
+
 const enterTOTP = useTOTPEntry();
+const totpKeys = useTOTPKeys();
+
+onMounted(async () => {
+  totpKeys.value = await getKeys();
+});
 </script>

@@ -1,11 +1,11 @@
 import type TOTPKey from "~/types/totp";
-import Crypto from "crypto";
 import jsSHA from "jssha";
 import getMachineId from "./machineID";
 
 export default async function getKeys() {
   const encryptedKeyString = localStorage.getItem("encryptedKeys");
   if (!encryptedKeyString) {
+    console.log("No KeyStore Found");
     return [];
   }
   const encryptedKeys: TOTPKey[] = JSON.parse(encryptedKeyString);
