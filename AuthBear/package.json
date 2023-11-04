@@ -11,8 +11,8 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@types/vue-barcode-reader": "^0.0.2",
     "@types/totp-generator": "^0.0.7",
+    "@types/vue-barcode-reader": "^0.0.2",
     "autoprefixer": "^10.4.16",
     "daisyui": "^3.9.4",
     "nuxt": "^3.8.0",
@@ -22,8 +22,9 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "vue-barcode-reader": "^1.0.3",
+    "@esbuild/darwin-arm64": "^0.19.5",
     "jssha": "^3.3.1",
-    "totp-generator": "^0.0.14"
+    "totp-generator": "^0.0.14",
+    "vue-barcode-reader": "^1.0.3"
   }
 }
