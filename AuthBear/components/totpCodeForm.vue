@@ -1,14 +1,22 @@
 
 <script setup>
-import { ref, onMounted } from "vue";
 import { StreamBarcodeReader } from "vue-barcode-reader";
 
+const emit = defineEmits(["addTOTP"])
+
+let enterTOTP = useTOTPEntry();
 const scan_on = ref(false);
 const account_name = ref("");
 const totp_key = ref("");
 
 function startQRScan() {
     scan_on.value = true;
+}
+
+function addTOTP() {
+    const new_key = {accountName: account_name.value, totpKey: totp_key.value, folderId: ""};
+    emit("addTOTP", new_key);
+    enterTOTP.value = false;
 }
 
 function onDecode(result) {
@@ -19,8 +27,10 @@ function onDecode(result) {
         account_name.value = match[4] + "(" + match[1] + ")";
        
         scan_on.value = false;
+        addTOTP();
+
     }
-    else console.error("error")
+    else console.log("error")
 }
 
 </script>
@@ -43,9 +53,16 @@ function onDecode(result) {
             <label for="account_name_input">Account Name</label>
             <input id="account_name_input" type="text" v-model="account_name" class="form-control rounded-md align-text-bottom" placeholder="Account Name">
             <label for="totp_key_input">Account Name</label>
+<<<<<<< HEAD
             <input id="totp_key_input" type="text" v-model="totp_key" class="form-control rounded-md align-text-bottom" placeholder="Enter Text">
+=======
+            <input id="totp_key_input" type="text" v-model="totp_key" class="form-control" placeholder="Enter Text">
+            <button type="button" class="btn btn-primary" @click="enterTOTP = false">Cancel</button>
+            <button type="button" class="btn btn-primary" @click="addTOTP">Save</button>
+>>>>>>> cd160afc2e72f6ebc92e696aa3875c7b4afb005d
         </div>
     </div>
+    
     
 
 </template>
