@@ -3,6 +3,14 @@
     <TotpEntry v-if="enterTOTP === true" />
   </ClientOnly>
 
+  <TotpCard
+    :totp-key="{
+      totpKey: 'JBSWY3DPEHPK3PXP',
+      accountName: '',
+      folderId: '',
+    }"
+  ></TotpCard>
+
   <button
     @click="
       () => {
@@ -15,8 +23,9 @@
   </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import getKeys from "~/totpFunctions/getKeys";
+import type TOTPKey from "~/types/totp";
 
 const enterTOTP = useTOTPEntry();
 const totpKeys = useTOTPKeys();
