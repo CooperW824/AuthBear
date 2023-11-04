@@ -1,12 +1,12 @@
 <template>
   <ClientOnly>
-    <TotpEntry v-if="enterTOTP === true" />
+    <TotpCodeForm v-if="enterTOTP === true" />
   </ClientOnly>
   <h1>Hello World</h1>
   <button
     @click="
       () => {
-        enterTOTP = true;
+        enterTOTP.value = true;
         console.log(enterTOTP.valueOf());
       }
     "
@@ -17,5 +17,7 @@
 </template>
 
 <script setup>
-let enterTOTP = useTOTPEntry();
+import { ref } from "vue"
+//let enterTOTP = useTOTPEntry();
+const enterTOTP = ref(false);
 </script>
