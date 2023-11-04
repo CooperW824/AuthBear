@@ -2,16 +2,16 @@
 <script setup>
 import { StreamBarcodeReader } from "vue-barcode-reader";
 
+
 const emit = defineEmits(["addTOTP"])
 
 let enterTOTP = useTOTPEntry();
+
 const scan_on = ref(false);
 const account_name = ref("");
 const totp_key = ref("");
 
-function startQRScan() {
-    scan_on.value = true;
-}
+function startQRScan() { scan_on.value = true; }
 
 function addTOTP() {
     const new_key = {accountName: account_name.value, totpKey: totp_key.value, folderId: ""};
@@ -38,17 +38,6 @@ function onDecode(result) {
 <template>
     <div v-if="scan_on">
         <StreamBarcodeReader @decode="onDecode"></StreamBarcodeReader>
+        <button type="button" class="btn btn-primary" @click="scan_on = false">Cancel</button>
     </div>
-    <div v-if="!scan_on" class="display-flex">
-        
-        <div class="text-center align-text-bottom">
-            <label for="account_name_input">Account Name</label>
-            <input id="account_name_input" type="text" v-model="account_name" class="form-control rounded-md align-text-bottom" placeholder="Account Name">
-            <label for="totp_key_input">Account Name</label>
-            <input id="totp_key_input" type="text" v-model="totp_key" class="form-control rounded-md align-text-bottom" placeholder="Enter Text">
-        </div>
-    </div>
-    
-    
-
 </template>

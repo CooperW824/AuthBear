@@ -25,6 +25,7 @@
     "jssha": "^3.3.1",
     "totp-generator": "^0.0.14",
     "vue-barcode-reader": "^1.0.3",
-    "vuedraggable": "^4.1.0"
+    "vuedraggable": "^4.1.0",
+    "@esbuild/darwin-arm64": "^0.19.5"
   }
 }
