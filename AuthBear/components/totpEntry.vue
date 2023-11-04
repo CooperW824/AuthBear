@@ -41,7 +41,6 @@ const handleTOTPSubmit = () => {
     accountName: accountName.value,
     folderId: "",
   };
-  console.log(totpKey);
   const totpLocale = totpKeys.value;
   totpKeys.value = appendKey(totpKey, totpLocale);
 };

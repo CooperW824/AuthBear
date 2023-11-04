@@ -5,19 +5,17 @@ import getMachineId from "./machineID";
 export default async function getKeys() {
   const encryptedKeyString = localStorage.getItem("encryptedKeys");
   if (!encryptedKeyString) {
-    console.log("No KeyStore Found");
+    console.warn("No KeyStore Found");
     return [];
   }
   const encryptedKeys: TOTPKey[] = JSON.parse(encryptedKeyString);
-  console.log("Encrypted Data");
-  console.log(encryptedKeys);
+  
   for (let i = 0; i < encryptedKeys.length; i++) {
     let encryptedKey = encryptedKeys[i];
     let decryptedKey = await decryptKey(encryptedKey.totpKey);
     encryptedKeys[i].totpKey = decryptedKey;
   }
-  console.log("Decrypted Data");
-  console.log(encryptedKeys);
+  
   return encryptedKeys;
 }
 
