@@ -1,13 +1,12 @@
 <template>
   <ClientOnly>
-    <TotpEntry v-if="enterTOTP === true" />
+    <TotpCodeForm v-if="enterTOTP" />
   </ClientOnly>
-  <h1>Hello World</h1>
+  
   <button
     @click="
       () => {
         enterTOTP = true;
-        console.log(enterTOTP.valueOf());
       }
     "
     class="absolute bottom-2 right-2 btn-primary rounded-full w-20 h-20 flex justify-center items-center"
@@ -17,5 +16,6 @@
 </template>
 
 <script setup>
-let enterTOTP = useTOTPEntry();
+
+const enterTOTP = ref(false);
 </script>
