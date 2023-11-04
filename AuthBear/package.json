@@ -11,7 +11,11 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+<<<<<<< HEAD
     "@types/vue-barcode-reader": "^0.0.2",
+=======
+    "@types/totp-generator": "^0.0.7",
+>>>>>>> refs/remotes/origin/main
     "autoprefixer": "^10.4.16",
     "daisyui": "^3.9.4",
     "nuxt": "^3.8.0",
@@ -21,6 +25,11 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+<<<<<<< HEAD
     "vue-barcode-reader": "^1.0.3"
+=======
+    "jssha": "^3.3.1",
+    "totp-generator": "^0.0.14"
+>>>>>>> refs/remotes/origin/main
   }
 }
