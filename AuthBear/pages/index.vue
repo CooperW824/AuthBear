@@ -13,7 +13,8 @@
       :folder="folder"
       :totpKeys="
         totpKeys.filter((totpKey) => {
-          totpKey.folderId === folder.folderID;
+        
+          return totpKey.folderId === folder.folderID;
         })
       "
       class="my-2"

@@ -6,8 +6,8 @@
     <h2 class="text-4xl text-secondary-content font-semibold my-1 ">{{ totpCode }}</h2>
     <progress
       class="progress progress-primary w-56 my-2"
-      value="50"
-      max="100"
+      :value="iterations"
+      max="1765"
     ></progress>
   </div>
 </template>
@@ -17,19 +17,27 @@ import calculateTOTP from "~/totpFunctions/calculateTotp";
 import type TOTPKey from "~/types/totp";
 
 const totpCode = ref("")
-
+let iterations = ref(0);
 let props = defineProps<{totpKey: TOTPKey}>();
 
 function refresh() {
   totpCode.value = calculateTOTP(props.totpKey.totpKey);
 }
 
+
+
 onMounted(()=>{
     totpCode.value = calculateTOTP(props.totpKey.totpKey);
 
     setInterval(function(){
-      refresh()
-  }, 30000)
+      iterations.value += 1;
+      if(iterations.value == 1765){
+        refresh()
+        iterations.value = 0;
+      }
+  }, 17)
+
+    
   
 })
 </script>

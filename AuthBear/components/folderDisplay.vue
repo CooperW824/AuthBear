@@ -4,14 +4,6 @@ import type Folder from "~/types/folder";
 import type TOTPKey from "~/types/totp";
 const props = defineProps<{ folder: Folder; totpKeys: TOTPKey[] }>();
 
-function onMoved(event: Event) {
-  console.log("moved", event);
-}
-
-onMounted(() => {
-  // console.log("here");
-  // console.log(props.folders[0][0]);
-});
 </script>
 
 <template>
