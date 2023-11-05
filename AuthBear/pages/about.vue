@@ -29,17 +29,17 @@
                 <div class="bg-secondary rounded-lg p-6 shadow-md">
                     <i class="fa fa-lock text-5xl text-primary mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">Quick Search</h3>
-                    <p>Find your codes quickly with a convenient search bar.</p>
+                    <p>Find your codes quickly with a</p><p>convenient search bar.</p>
                 </div>
                 <div class="bg-secondary rounded-lg p-6 shadow-md">
                     <i class="fa fa-lock text-5xl text-primary mb-4"></i>
                     <h3 class="text-xl font-semibold mb-2">Clean Organization</h3>
-                    <p>Create and manage folders for your codes.</p>
+                    <p>Create and manage folders </p><p>for your codes.</p>
                 </div>
                 <div class="bg-secondary rounded-lg p-6 shadow-md">
                     <i class="fa fa-mobile text-5xl text-primary mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-2">Mobile Compatibility</h3>
-                    <p>Use your phone or authenticator app for easy verification.</p>
+                    <h3 class="text-xl font-semibold mb-2">Secure Storage</h3>
+                    <p>Encrypted local storage means your data</p><p>never leaves your device.</p>
                 </div>
             </div>
         </section>
