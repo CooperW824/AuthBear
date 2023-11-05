@@ -35,13 +35,13 @@ const accountName = ref("");
 const totpSecret = ref("");
 const totpKeys = useTOTPKeys();
 
-const handleTOTPSubmit = () => {
+const handleTOTPSubmit =  async () => {
   const totpKey: TOTPKey = {
     totpKey: totpSecret.value,
     accountName: accountName.value,
     folderId: "",
   };
   const totpLocale = totpKeys.value;
-  totpKeys.value = appendKey(totpKey, totpLocale);
+  totpKeys.value = await appendKey(totpKey, totpLocale);
 };
 </script>

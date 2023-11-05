@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import type TOTPKey from "~/types/totp";
 import appendKey from "../totpFunctions/saveKeys";
+import getKeys from "~/totpFunctions/getKeys";
 
 const emit = defineEmits(["addTOTP"])
 
@@ -12,10 +13,11 @@ const folders = useFolders();
 const account_name = ref("");
 const totp_key = ref("");
 
-function addTOTP() {
+async function addTOTP() {
     const new_key: TOTPKey = {accountName: account_name.value, totpKey: totp_key.value, folderId: ""};
     const totpLocale = totpKeys.value;
-    totpKeys.value = appendKey(new_key, totpLocale);
+    await appendKey(new_key, totpLocale);
+    totpKeys.value = await getKeys();
     enterTOTP.value = false;
 }   
 </script>
