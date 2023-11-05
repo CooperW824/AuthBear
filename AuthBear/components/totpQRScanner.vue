@@ -1,11 +1,15 @@
 
-<script setup>
+<script setup lang="ts">
 import { StreamBarcodeReader } from "vue-barcode-reader";
+import type TOTPKey from "~/types/totp";
+import appendKey from "../totpFunctions/saveKeys";
 
+//const emit = defineEmits(["addTOTP"])
+defineExpose({
+    startQRScan
+})
 
-const emit = defineEmits(["addTOTP"])
-
-let enterTOTP = useTOTPEntry();
+const totpKeys = useTOTPKeys();
 
 const scan_on = ref(false);
 const account_name = ref("");
@@ -14,12 +18,13 @@ const totp_key = ref("");
 function startQRScan() { scan_on.value = true; }
 
 function addTOTP() {
-    const new_key = {accountName: account_name.value, totpKey: totp_key.value, folderId: ""};
-    emit("addTOTP", new_key);
-    enterTOTP.value = false;
+    const new_key: TOTPKey = {accountName: account_name.value, totpKey: totp_key.value, folderId: ""};
+    const totpLocale = totpKeys.value;
+    totpKeys.value = appendKey(new_key, totpLocale);
+
 }
 
-function onDecode(result) {
+function onDecode(result : String) {
     const regex = /otpauth:\/\/.*\/([^:]+):([^@]+)@.*\?secret=([^&]+)&issuer=([^&]+)/;
     const match = result.match(regex);
     if (match) {
