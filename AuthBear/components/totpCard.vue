@@ -47,7 +47,7 @@
       {{ totpCode }}
     </h2>
     <progress
-      class="progress progress-primary w-56 my-2"
+      class="progress w-56 my-2" :class="{'progress-primary': !endWarning, 'progress-error': endWarning}"
       :value="percentage"
       max="100"
     ></progress>
@@ -64,6 +64,7 @@ import type TOTPKey from "~/types/totp";
 const totpKeys = useTOTPKeys();
 const totpCode = ref("");
 const moveFolder = ref(false);
+const endWarning = ref(false);
 const folders = useFolders();
 let percentage = ref(0);
 let props = defineProps<{ totpKey: TOTPKey }>();
@@ -102,6 +103,8 @@ onMounted(() => {
     if (seconds % 30 == 0) {
       refresh();
     }
+    if (seconds % 30 >= 25) endWarning.value = true;
+    else endWarning.value = false;
   }, 100);
 });
 </script>
