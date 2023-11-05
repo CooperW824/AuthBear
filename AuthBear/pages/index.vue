@@ -1,5 +1,6 @@
 <template>
   <ClientOnly>
+    <SearchWidget :totpKeys="totpKeys"></SearchWidget>
     <TotpCodeForm v-if="enterTOTP === true" />
     <TotpQRScanner ref="totpQRScannerComponent"></TotpQRScanner>
   </ClientOnly>

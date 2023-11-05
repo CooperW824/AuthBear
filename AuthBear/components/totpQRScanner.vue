@@ -21,6 +21,7 @@ function addTOTP() {
     const new_key: TOTPKey = {accountName: account_name.value, totpKey: totp_key.value, folderId: ""};
     const totpLocale = totpKeys.value;
     totpKeys.value = appendKey(new_key, totpLocale);
+    console.log(totpKeys.value);
 
 }
 
