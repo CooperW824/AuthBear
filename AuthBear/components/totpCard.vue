@@ -2,7 +2,7 @@
   <div
     class="bg-neutral w-full max-w-[400px] h-fit p-2 rounded-2xl shadow-lg flex flex-col justify-around items-start"
   >
-    <h1 class="text-3xl font-semibold text-primary my-1">
+    <h1 class="text-3xl font-semibold text-white my-1">
       {{ totpKey.accountName != "" ? totpKey.accountName : "Unnamed" }}
     </h1>
     <h2 class="text-4xl text-secondary-content font-semibold my-1">
@@ -36,7 +36,6 @@ onMounted(() => {
     let milliseconds = date.getMilliseconds();
     const seconds = date.getSeconds();
     milliseconds += (seconds *1000);
-    console.log(milliseconds);
     percentage.value = ((milliseconds % (30*1000)) / (30*1000)) * 100;
     // 
     if (seconds % (30) == 0) {
