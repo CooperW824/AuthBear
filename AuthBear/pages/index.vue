@@ -1,6 +1,7 @@
 <template>
   <ClientOnly>
     <TotpCodeForm v-if="enterTOTP === true" />
+    <AddFolderDialog v-if="folderCreateModal === true"></AddFolderDialog>
   </ClientOnly>
 
   <div class="w-full h-full absolute" @click="displayOptions = false">
@@ -47,6 +48,12 @@
     v-if="displayOptions == true && enterTOTP == false"
   >
     <button
+      @click="
+        () => {
+          folderCreateModal = true;
+          displayOptions =false;
+        }
+      "
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
     >
       <img
@@ -99,7 +106,9 @@
 <script setup lang="ts">
 import getKeys from "~/totpFunctions/getKeys";
 import folderDisplay from "~/components/folderDisplay.vue";
+import { useFolderCreate } from "~/composables/states";
 
+const folderCreateModal = useFolderCreate();
 const displayOptions = ref(false);
 const enterTOTP = useTOTPEntry();
 const totpKeys = useTOTPKeys();
