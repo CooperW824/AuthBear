@@ -36,11 +36,19 @@ function onDecode(result) {
 </script>
 
 <template>
+<div class="w-full h-full absolute z-10 bg-base-100">
     <div v-if="scan_on">
         <StreamBarcodeReader @decode="onDecode"></StreamBarcodeReader>
     </div>
+    <div>
+        <button @click="enterTOTP=false" class="m-6 h-16 w-16 btn btn-primary border-b-4 border-blue-500 hover:border-blue-500" type="button">
+            <p class="text-4xl">
+                X
+            </p>
+        </button>
+    </div>
     <div v-if="!scan_on" class="display-flex">
-        <p class="my-5 text-center text-8xl">
+        <p class="m-2 text-center text-8xl">
             Scan the QR code!
         </p>
         <div class="flex items-center justify-center">
@@ -59,7 +67,7 @@ function onDecode(result) {
             <input id="totp_key_input" type="text" v-model="totp_key" class="form-control rounded-md align-text-bottom" placeholder="Enter Key">
         </div>
     </div>
-    
+</div>
     
 
 </template>
