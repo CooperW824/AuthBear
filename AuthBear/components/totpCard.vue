@@ -4,11 +4,8 @@
   >
     <div class="flex items-start justify-center w-full flex-col">
       <div class="flex items-center">
-        <h1 class="text-3xl font-semibold text-neutral-content my-1">
-          {{ totpKey.accountName != "" ? totpKey.accountName : "Unnamed" }}
-        </h1>
         <div class="dropdown">
-          <label tabindex="0" class="btn m-1 btn-primary">⋮</label>
+          <label tabindex="0" class="btn m-1 btn-outline border-transparent text-white">⋮</label>
           <ul
             tabindex="0"
             class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
@@ -19,6 +16,10 @@
             <li><button @click="handleKeyDelete">Delete Code</button></li>
           </ul>
         </div>
+        <h1 class="text-3xl font-semibold text-neutral-content my-1">
+          {{ totpKey.accountName != "" ? totpKey.accountName : "Unnamed" }}
+        </h1>
+        
       </div>
 
       <div class="flex items-center justify-center" v-if="moveFolder === true">
