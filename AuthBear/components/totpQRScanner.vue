@@ -5,7 +5,7 @@ import { StreamBarcodeReader } from "vue-barcode-reader";
 
 const emit = defineEmits(["addTOTP"])
 
-let enterTOTP = useTOTPEntry();
+const qrScanner = useQRScanner();
 
 const scan_on = ref(false);
 const account_name = ref("");
@@ -36,8 +36,8 @@ function onDecode(result) {
 </script>
 
 <template>
-    <div v-if="scan_on">
+    <div class="absolute w-full h-full bg-base-100 flex flex-col z-20 items-center justify-center">
         <StreamBarcodeReader @decode="onDecode"></StreamBarcodeReader>
-        <button type="button" class="btn btn-primary" @click="scan_on = false">Cancel</button>
+        <button type="button" class="btn btn-primary" @click="qrScanner = false">Cancel</button>
     </div>
 </template>

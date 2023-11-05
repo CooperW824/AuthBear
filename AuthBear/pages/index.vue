@@ -2,34 +2,21 @@
   <ClientOnly>
     <TotpCodeForm v-if="enterTOTP === true" />
     <AddFolderDialog v-if="folderCreateModal === true"></AddFolderDialog>
+    <TotpQRScanner v-if="qrScanner === true" />
   </ClientOnly>
 
-  <div class="w-full h-full absolute" @click="displayOptions = false">
+  <div class="w-full h-full absolute flex items-start justify-center" @click="displayOptions = false">
     <FolderDisplay
-      :folder="{ folderID: ';jflkdsjlkf', folderName: 'Folder Name' }"
-      :totp-keys="[
-        {
-          totpKey: 'AWEDFGHJNFDSXCFR',
-          folderId: 'asdfghjkl;',
-          accountName: 'test',
-        },
-        {
-          totpKey: 'AWEDFGHJNFDSXCFR',
-          folderId: 'asdfghjkl;',
-          accountName: 'test',
-        },
-        {
-          totpKey: 'AWEDFGHJNFDSXCFR',
-          folderId: 'asdfghjkl;',
-          accountName: 'test',
-        },
-        {
-          totpKey: 'AWEDFGHJNFDSXCFR',
-          folderId: 'asdfghjkl;',
-          accountName: 'test',
-        },
-      ]"
-    ></FolderDisplay>
+      v-for="(folder, index) in folders"
+      :key="index"
+      :folder="folder"
+      :totpKeys="
+        totpKeys.filter((totpKey) => {
+          totpKey.folderId === folder.folderID;
+        })
+      "
+      class="my-2"
+    />
   </div>
 
   <button
@@ -51,7 +38,7 @@
       @click="
         () => {
           folderCreateModal = true;
-          displayOptions =false;
+          displayOptions = false;
         }
       "
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
@@ -82,6 +69,12 @@
     </button>
     <button
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
+      @click="
+        () => {
+          qrScanner = true;
+          displayOptions = false;
+        }
+      "
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -105,9 +98,11 @@
 
 <script setup lang="ts">
 import getKeys from "~/totpFunctions/getKeys";
-import folderDisplay from "~/components/folderDisplay.vue";
+import getFolders from "~/totpFunctions/getFolders";
 import { useFolderCreate } from "~/composables/states";
 
+const qrScanner = useQRScanner();
+const folders = useFolders();
 const folderCreateModal = useFolderCreate();
 const displayOptions = ref(false);
 const enterTOTP = useTOTPEntry();
@@ -115,5 +110,6 @@ const totpKeys = useTOTPKeys();
 
 onMounted(async () => {
   totpKeys.value = await getKeys();
+  folders.value = getFolders();
 });
 </script>
