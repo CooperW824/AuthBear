@@ -4,13 +4,31 @@
   </ClientOnly>
 
   <div class="w-full h-full absolute" @click="displayOptions = false">
-    <TotpCard
-      :totp-key="{
-        totpKey: 'JBSWY3DPEHPK3PXP',
-        accountName: '',
-        folderId: '',
-      }"
-    ></TotpCard>
+    <FolderDisplay
+      :folder="{ folderID: ';jflkdsjlkf', folderName: 'Folder Name' }"
+      :totp-keys="[
+        {
+          totpKey: 'AWEDFGHJNFDSXCFR',
+          folderId: 'asdfghjkl;',
+          accountName: 'test',
+        },
+        {
+          totpKey: 'AWEDFGHJNFDSXCFR',
+          folderId: 'asdfghjkl;',
+          accountName: 'test',
+        },
+        {
+          totpKey: 'AWEDFGHJNFDSXCFR',
+          folderId: 'asdfghjkl;',
+          accountName: 'test',
+        },
+        {
+          totpKey: 'AWEDFGHJNFDSXCFR',
+          folderId: 'asdfghjkl;',
+          accountName: 'test',
+        },
+      ]"
+    ></FolderDisplay>
   </div>
 
   <button
@@ -38,7 +56,12 @@
     </button>
     <button
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
-      @click="() => {enterTOTP = true; displayOptions = false }"
+      @click="
+        () => {
+          enterTOTP = true;
+          displayOptions = false;
+        }
+      "
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -75,6 +98,7 @@
 
 <script setup lang="ts">
 import getKeys from "~/totpFunctions/getKeys";
+import folderDisplay from "~/components/folderDisplay.vue";
 
 const displayOptions = ref(false);
 const enterTOTP = useTOTPEntry();
