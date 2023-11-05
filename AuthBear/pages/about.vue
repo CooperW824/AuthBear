@@ -11,7 +11,7 @@
         <p class="font-mono rounded-md text-left flex-auto m-10 box-content p-6 border-4 border-secondary">
             Authbear is a webapp designed to organize all your TOTPs (Time-based One Time Passwords)! 
             Similar to Google Authenticator (but better, of course), it provides a more customizable interface, allowing you to organize all your codes into folders.
-            There will also be a search bar available for easier code accessing.
+            A search bar is also available for easier code accessing.
         </p>
         <div>
             <p class="text-center sm:text-6xl font-semibold">
