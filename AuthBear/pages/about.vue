@@ -44,7 +44,10 @@
             </div>
         </section>
     </section>
-    <section id="demo" class="demo text-center py-12 bg-base-200">
+    <section id="demo" class="demo text-center items-center contnet-center py-12 bg-base-200">
+        <div class="flex justify-center">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/KoRHScBFKuc?si=DvGzFpcYGJN-0KPA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
         
     </section>
 
