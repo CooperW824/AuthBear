@@ -53,10 +53,8 @@
     <button title="Scan QR Code"
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
       @click="() => {
-        if (totpQRScannerComponent) {
-          displayOptions = false;
-          totpQRScannerComponent.startQRScan();
-        }
+       displayOptions =false;
+       qrScanner = true;
       }"
     >
       <svg
@@ -87,7 +85,6 @@ const displayOptions = ref(false);
 const enterTOTP = useTOTPEntry();
 const totpKeys = useTOTPKeys();
 
-const totpQRScannerComponent = ref<typeof TotpQRScanner | null>(null);
 
 onMounted(async () => {
   totpKeys.value = await getKeys();

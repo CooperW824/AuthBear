@@ -9,7 +9,9 @@ defineExpose({
     startQRScan
 })
 
+const emit = defineEmits(["addTOTP"])
 const totpKeys = useTOTPKeys();
+const qrScanner = useQRScanner();
 
 const scan_on = ref(false);
 const account_name = ref("");
@@ -21,8 +23,7 @@ function addTOTP() {
     const new_key: TOTPKey = {accountName: account_name.value, totpKey: totp_key.value, folderId: ""};
     const totpLocale = totpKeys.value;
     totpKeys.value = appendKey(new_key, totpLocale);
-    console.log(totpKeys.value);
-
+    qrScanner.value =false;
 }
 
 function onDecode(result : String) {
@@ -42,8 +43,8 @@ function onDecode(result : String) {
 </script>
 
 <template>
-    <div v-if="scan_on">
+    <div class="absolute w-full h-full bg-base-100 flex flex-col z-20 items-center justify-center">
         <StreamBarcodeReader @decode="onDecode"></StreamBarcodeReader>
-        <button type="button" class="btn btn-primary" @click="scan_on = false">Cancel</button>
+        <button type="button" class="btn btn-primary" @click="qrScanner = false">Cancel</button>
     </div>
 </template>
