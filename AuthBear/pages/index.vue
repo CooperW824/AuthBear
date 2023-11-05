@@ -101,7 +101,7 @@
 <script setup lang="ts">
 import getKeys from "~/totpFunctions/getKeys";
 import getFolders from "~/totpFunctions/getFolders";
-import { useFolderCreate, useFolders, useQRScanner } from "~/composables/states";
+import { useFolderCreate, useFolders, useNewVisitor, useQRScanner } from "~/composables/states";
 
 const qrScanner = useQRScanner();
 const folders = useFolders();
@@ -109,8 +109,11 @@ const folderCreateModal = useFolderCreate();
 const displayOptions = ref(false);
 const enterTOTP = useTOTPEntry();
 const totpKeys = useTOTPKeys();
+const newVisitor = useNewVisitor();
 
 onMounted(async () => {
+  if (newVisitor.value) navigateTo("/about");
+  
   totpKeys.value = await getKeys();
   folders.value = getFolders();
 });

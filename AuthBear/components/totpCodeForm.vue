@@ -24,7 +24,7 @@ async function addTOTP() {
 
 <template>
 
-  <div class="absolute w-full h-full bg-black bg-opacity-70 z-10 flex items-center justify-center">
+  <div class="absolute w-full h-full bg-black text-white bg-opacity-70 z-10 flex items-center justify-center">
     <div class="flex justify-center items-center">
             <div class="text-center">
                 <div class="flex flex-row justify-around">

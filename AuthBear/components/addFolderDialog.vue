@@ -1,11 +1,11 @@
 <template>
-  <div class="absolute w-full h-full bg-black bg-opacity-70 z-10 flex flex-col items-center justify-center">
+  <div class="absolute w-full h-full bg-black bg-opacity-70 z-10 flex flex-col text-white items-center justify-center">
     
-      <div class="flex flex-row justify-around my-2">
+      <div class="flex flex-row justify-around my-2 text-white">
           <span>New Folder</span>
           <button @click="folderCreateModal=false" type="button" class="btn btn-square btn-sm btn-secondary btn-outline border-transparent ml-10">X</button>
       </div>
-      <input v-model="newFolder" @input="validate" class="input input-primary my-2" type="text" placeholder="Folder name">
+      <input v-model="newFolder" @input="validate" class="input input-primary my-2 text-white" type="text" placeholder="Folder name">
       <div class="flex flex-row">
         <button @click="folderCreateModal=false" type="button" class="btn btn-secondary btn-outline py-3 px-6 mx-2">Cancel</button>
         <button @click="createFolder" type="button" class="btn btn-primary mx-2"> Save</button>

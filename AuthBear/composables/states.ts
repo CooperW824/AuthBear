@@ -4,6 +4,7 @@ import getMachineId from "~/totpFunctions/machineID";
 import type Folder from "~/types/folder";
 import type TOTPKey from "~/types/totp";
 
+export const useNewVisitor = () => useState<boolean>("newVisitor", () => true);
 export const useTOTPEntry = () => useState<boolean>("totpEntry", () => false);
 export const useQRScanner = () => useState<boolean>("qrScanner", () => false);
 export const useFolderCreate = () => useState<boolean>("FolderCreate", () => false);
