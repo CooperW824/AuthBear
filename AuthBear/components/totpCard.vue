@@ -33,10 +33,13 @@ onMounted(() => {
 
   setInterval(function () {
     const date = new Date();
+    let milliseconds = date.getMilliseconds();
     const seconds = date.getSeconds();
-    percentage.value = ((seconds % 30) / 30) * 100;
+    milliseconds += (seconds *1000);
+    console.log(milliseconds);
+    percentage.value = ((milliseconds % (30*1000)) / (30*1000)) * 100;
 
-    if (seconds % 30 == 0) {
+    if (seconds % (30) == 0) {
       refresh();
     }
   }, 100);
