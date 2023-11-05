@@ -24,7 +24,7 @@
       <div class="flex items-center justify-center" v-if="moveFolder === true">
         <select
           class="select select-primary w-full max-w-xs"
-          @select="(event) => {
+          @change="(event) => {
           handleMoveFolder((<HTMLSelectElement>event.target).value)}"
         >
           <option disabled selected>Move To:</option>
@@ -94,7 +94,6 @@ onMounted(() => {
     let milliseconds = date.getMilliseconds();
     const seconds = date.getSeconds();
     milliseconds += seconds * 1000;
-    console.log(milliseconds);
     percentage.value = ((milliseconds % (30 * 1000)) / (30 * 1000)) * 100;
     //
     if (seconds % 30 == 0) {
