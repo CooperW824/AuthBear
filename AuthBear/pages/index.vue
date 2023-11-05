@@ -1,16 +1,24 @@
 <template>
   <ClientOnly>
-    <searchWidget v-if="enterTOTP == true" />
+    <SearchWidget></SearchWidget>
+    <TotpCodeForm v-if="enterTOTP === true" />
+    <AddFolderDialog v-if="folderCreateModal === true"></AddFolderDialog>
+    <TotpQRScanner v-if="qrScanner === true"/>
   </ClientOnly>
 
-  <div class="w-full h-full absolute" @click="displayOptions = false">
-    <TotpCard
-      :totp-key="{
-        totpKey: 'JBSWY3DPEHPK3PXP',
-        accountName: '',
-        folderId: '',
-      }"
-    ></TotpCard>
+  <div class="w-full h-full absolute flex items-start justify-center" @click="displayOptions = false">
+    <FolderDisplay
+      v-for="(folder, index) in folders"
+      :key="index"
+      :folder="folder"
+      :totpKeys="
+        totpKeys.filter((totpKey) => {
+        
+          return totpKey.folderId === folder.folderID;
+        })
+      "
+      class="my-2"
+    />
   </div>
 
   <button
@@ -28,7 +36,13 @@
     class="flex flex-col absolute bottom-2 right-2 z-10"
     v-if="displayOptions == true && enterTOTP == false"
   >
-    <button title="New Folder"
+    <button
+      @click="
+        () => {
+          folderCreateModal = true;
+          displayOptions = false;
+        }
+      "
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
     >
       <img
@@ -36,9 +50,14 @@
         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNElEQVR4nO2Wv0oDQRCHv9IQxBTqA9jYCOlN7gFCOoltqryIxpeKVSCkNAlWadIYH0BP61sZmJNz2Qv3Z89LID8YOG5372N+MzscHFWD+sA7YBzxCrSrAm9ToHFsgJMqwKbi2AK9OsAGeKsLbKoo1eFp/g82z/aqxuYIJr8LE2AEXANNoAFcAUNdi3xbvQaCDA3c8QmeAi39xiXwBCyBb40FMNY1p4pmGkPvgXDH3hAY+AIHCWiUYX/kgueFPifsdWV6C3Qd7z+BizJg6V60prsGhWvtsQxYroxoVQC8KAM+1XOhZW+aulajZf71sePMAXbeU1Vg1flXvZzwGz23LGt1UY0LgB/woLTr1LHsNRofwDmeNMgxQO58QZNwaZo0qGTqHRpLJpIMhxfgS0OepaZ/7P0Bw2bZKRVGhY8AAAAASUVORK5CYII="
       />
     </button>
-    <button title="Add Code Manually"
+    <button
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
-      @click="() => {enterTOTP = true; displayOptions = false }"
+      @click="
+        () => {
+          enterTOTP = true;
+          displayOptions = false;
+        }
+      "
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -50,12 +69,14 @@
         />
       </svg>
     </button>
-    <button title="Scan QR Code"
+    <button
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
-      @click="() => {
-       displayOptions =false;
-       qrScanner = true;
-      }"
+      @click="
+        () => {
+          qrScanner = true;
+          displayOptions = false;
+        }
+      "
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -79,14 +100,18 @@
 
 <script setup lang="ts">
 import getKeys from "~/totpFunctions/getKeys";
-import  TotpQRScanner  from "@/components/totpQRScanner.vue";
+import getFolders from "~/totpFunctions/getFolders";
+import { useFolderCreate } from "~/composables/states";
 
+const qrScanner = useQRScanner();
+const folders = useFolders();
+const folderCreateModal = useFolderCreate();
 const displayOptions = ref(false);
 const enterTOTP = useTOTPEntry();
 const totpKeys = useTOTPKeys();
 
-
 onMounted(async () => {
   totpKeys.value = await getKeys();
+  folders.value = getFolders();
 });
 </script>

@@ -32,7 +32,6 @@ function base32tohex(base32:string) {
 		bits = "",
 		hex = ""
 
-  console.log(base32);
 
 	base32 = base32.replace("=", "")
 

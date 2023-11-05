@@ -2,11 +2,7 @@
 <script setup lang="ts">
 import type TOTPKey from '~/types/totp';
 
-const props = defineProps({
-    totpKeys: {
-        type: Array as () => TOTPKey[]
-    }
-})
+const totpKeys = useTOTPKeys();
 
 const searchQuery = ref("");
 
