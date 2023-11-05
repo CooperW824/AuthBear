@@ -112,9 +112,8 @@ const totpKeys = useTOTPKeys();
 const newVisitor = useNewVisitor();
 
 onMounted(async () => {
-  if (newVisitor.value) navigateTo("/about");
-  
   totpKeys.value = await getKeys();
+  if ((newVisitor.value) && (totpKeys.value.length === 0)) navigateTo("/about");
   folders.value = getFolders();
 });
 </script>

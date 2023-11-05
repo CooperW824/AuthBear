@@ -12,9 +12,10 @@ const folders = useFolders();
 
 const account_name = ref("");
 const totp_key = ref("");
+const folder_id = ref("");
 
 async function addTOTP() {
-    const new_key: TOTPKey = {accountName: account_name.value, totpKey: totp_key.value, folderId: ""};
+    const new_key: TOTPKey = {accountName: account_name.value, totpKey: totp_key.value, folderId: folder_id.value};
     const totpLocale = totpKeys.value;
     await appendKey(new_key, totpLocale);
     totpKeys.value = await getKeys();
@@ -38,7 +39,7 @@ async function addTOTP() {
                 <!--<label for="totp_key_input" class="block text-lg mb-2">TOTP Key</label>-->
                 <input id="totp_key_input" type="text" v-model="totp_key" class="form-control input input-primary rounded-md py-2 px-4 mb-4 text-base" placeholder="Enter TOTP Key">
 
-                <select id="folder_select" class="form-control input input-primary rounded-md py-2 px-4 mb-4 w-full">
+                <select v-model="folder_id" id="folder_select" class="form-control input input-primary rounded-md py-2 px-4 mb-4 w-full">
                     <option selected value="">(Optional) Folder</option>
                     <option v-for="folder in folders" :value="folder.folderID" :key="folder.folderID">{{ folder.folderName }}</option>
                 </select>
