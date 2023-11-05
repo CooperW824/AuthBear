@@ -56,6 +56,7 @@
 <script setup lang="ts">
 import calculateTOTP from "~/totpFunctions/calculateTotp";
 import deleteKey from "~/totpFunctions/deleteKey";
+import getKeys from "~/totpFunctions/getKeys";
 import { saveKeys } from "~/totpFunctions/saveKeys";
 import type TOTPKey from "~/types/totp";
 
@@ -70,14 +71,15 @@ function refresh() {
   totpCode.value = calculateTOTP(props.totpKey.totpKey);
 }
 
-function handleMoveFolder(folderIdToMoveTo: string) {
+async function handleMoveFolder(folderIdToMoveTo: string) {
   const index = totpKeys.value.findIndex((totpKey) => {
     return totpKey == props.totpKey;
   });
   const updatedKey = totpKeys.value[index];
   updatedKey.folderId = folderIdToMoveTo;
   totpKeys.value[index] = updatedKey;
-  saveKeys(totpKeys.value);
+  await saveKeys(totpKeys.value);
+  totpKeys.value = await getKeys();
 }
 
 function handleKeyDelete() {

@@ -2,9 +2,9 @@ import type TOTPKey from "~/types/totp";
 import jsSHA from "jssha";
 import getMachineId from "./machineID";
 
-export default function appendKey(key: TOTPKey, keys: TOTPKey[]) {
+export default async function appendKey(key: TOTPKey, keys: TOTPKey[]) {
   const updatedKeys = keys.concat(key);
-  saveKeys(updatedKeys);
+  await saveKeys(updatedKeys);
   return updatedKeys;
 }
 
