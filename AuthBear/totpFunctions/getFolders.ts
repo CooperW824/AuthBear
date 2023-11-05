@@ -3,7 +3,10 @@ import type Folder from "~/types/folder";
 export default function getFolders(){
     const foldersString = localStorage.getItem("folders");
     if(foldersString){
-        return JSON.parse(foldersString) as Folder[];
+        const folders = JSON.parse(foldersString) as Folder[];
+        if(folders.length > 0){
+            return folders;
+        }
     }
     const folderArray = [{folderName: "General", folderID: ""}] as Folder[];
     localStorage.setItem("folders", JSON.stringify(folderArray));
