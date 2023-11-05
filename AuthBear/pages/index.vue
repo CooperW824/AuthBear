@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <search v-if="enterTOTP == true" />
+    <searchWidget v-if="enterTOTP == true" />
   </ClientOnly>
 
   <div class="w-full h-full absolute" @click="displayOptions = false">
