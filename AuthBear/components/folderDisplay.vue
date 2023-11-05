@@ -17,7 +17,7 @@ const props = defineProps<{ folder: Folder; totpKeys: TOTPKey[] }>();
       </h1>
     </div>
     <div class="collapse-content">
-      <div class="max-h-[300px] overflow-y-auto">
+      <div class="max-h-[300px] overflow-y-auto overflow-x-hidden">
         <TotpCard
           v-for="(totpKey, index) in totpKeys"
           :totp-key="totpKey"
