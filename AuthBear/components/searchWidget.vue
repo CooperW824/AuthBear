@@ -18,7 +18,7 @@ function searchMatch(accountName : String) {
 <template>
     <div class="flex flex-col justify-center items-center">
         <div class="flex justify-center items-center">
-        <input type="text" v-model="searchQuery" placeholder="Search..." class="input input-bordered w-full max-w-xs text-centered">
+        <input type="text" v-model="searchQuery" placeholder="Search..." class="input input-bordered w-full max-w-xs text-centered my-2">
         </div>
 
         <div class="flex flex-col w-96 items-center justify-center">
