@@ -1,7 +1,7 @@
 import jsSHA from "jssha"
 
 export default function getToken(key:string) {
-	
+	console.log(key)
 	let epoch, time, shaObj, hmac, offset, otp
 	let period = 30
 	let digits = 6
