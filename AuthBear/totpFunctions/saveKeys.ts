@@ -60,7 +60,7 @@ async function encryptTotpKeyWithPassphrase(TOTPKey: string) {
   return base64String;
 }
 
-async function saveKeys(keys: TOTPKey[]) {
+export async function saveKeys(keys: TOTPKey[]) {
   for (let i = 0; i < keys.length; i++) {
     const unencryptedKey = keys[i].totpKey;
     const encrypted = await encryptTotpKeyWithPassphrase(unencryptedKey);
