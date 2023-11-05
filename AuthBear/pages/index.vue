@@ -1,12 +1,12 @@
 <template>
   <ClientOnly>
-    <SearchWidget></SearchWidget>
     <TotpCodeForm v-if="enterTOTP === true" />
     <AddFolderDialog v-if="folderCreateModal === true"></AddFolderDialog>
     <TotpQRScanner v-if="qrScanner === true"/>
   </ClientOnly>
-
-  <div class="w-full h-full absolute flex items-start justify-center" @click="displayOptions = false">
+  
+  <div class="w-full h-full absolute flex flex-col justify-start items-center" @click="displayOptions = false">
+    <SearchWidget></SearchWidget>
     <FolderDisplay
       v-for="(folder, index) in folders"
       :key="index"

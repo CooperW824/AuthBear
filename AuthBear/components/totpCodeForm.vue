@@ -32,10 +32,10 @@ function addTOTP() {
     <div class="display-flex">
         <div class=" flex flex-col items-center text-4xl">
             <label class="text-center" for="account_name_input">Account Name</label>
-            <input id="account_name_input" type="text" v-model="account_name" class="form-control rounded-md align-text-bottom" placeholder="Account Name">
+            <input id="account_name_input" type="text" v-model="account_name" class="form-control rounded-md align-text-bottom input input-primary" placeholder="Account Name">
             
             <label class="text-center" for="totp_key_input">TOTP Key</label>
-            <input id="totp_key_input" type="text" v-model="totp_key" class="form-control rounded-md align-text-bottom" placeholder="Enter Key">
+            <input id="totp_key_input" type="text" v-model="totp_key" class="form-control rounded-md align-text-bottom input input-primary" placeholder="Enter Key">
             <button type="button" class="btn btn-primary" @click="addTOTP">Save</button>
         </div>
         
