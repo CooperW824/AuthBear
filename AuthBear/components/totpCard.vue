@@ -20,7 +20,16 @@ const totpCode = ref("")
 
 let props = defineProps<{totpKey: TOTPKey}>();
 
+function refresh() {
+  totpCode.value = calculateTOTP(props.totpKey.totpKey);
+}
+
 onMounted(()=>{
     totpCode.value = calculateTOTP(props.totpKey.totpKey);
+
+    setInterval(function(){
+      refresh()
+  }, 30000)
+  
 })
 </script>
