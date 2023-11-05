@@ -101,7 +101,7 @@
 <script setup lang="ts">
 import getKeys from "~/totpFunctions/getKeys";
 import getFolders from "~/totpFunctions/getFolders";
-import { useFolderCreate } from "~/composables/states";
+import { useFolderCreate, useFolders, useQRScanner } from "~/composables/states";
 
 const qrScanner = useQRScanner();
 const folders = useFolders();

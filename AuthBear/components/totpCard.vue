@@ -38,7 +38,7 @@ onMounted(() => {
     milliseconds += (seconds *1000);
     console.log(milliseconds);
     percentage.value = ((milliseconds % (30*1000)) / (30*1000)) * 100;
-
+    // 
     if (seconds % (30) == 0) {
       refresh();
     }
