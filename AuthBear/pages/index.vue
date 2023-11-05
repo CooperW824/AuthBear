@@ -1,6 +1,7 @@
 <template>
   <ClientOnly>
     <TotpCodeForm v-if="enterTOTP === true" />
+    <TotpQRScanner ref="totpQRScannerComponent"></TotpQRScanner>
   </ClientOnly>
 
   <div class="w-full h-full absolute" @click="displayOptions = false">
@@ -28,7 +29,7 @@
     class="flex flex-col absolute bottom-2 right-2 z-10"
     v-if="displayOptions == true && enterTOTP == false"
   >
-    <button
+    <button title="New Folder"
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
     >
       <img
@@ -36,7 +37,7 @@
         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNElEQVR4nO2Wv0oDQRCHv9IQxBTqA9jYCOlN7gFCOoltqryIxpeKVSCkNAlWadIYH0BP61sZmJNz2Qv3Z89LID8YOG5372N+MzscHFWD+sA7YBzxCrSrAm9ToHFsgJMqwKbi2AK9OsAGeKsLbKoo1eFp/g82z/aqxuYIJr8LE2AEXANNoAFcAUNdi3xbvQaCDA3c8QmeAi39xiXwBCyBb40FMNY1p4pmGkPvgXDH3hAY+AIHCWiUYX/kgueFPifsdWV6C3Qd7z+BizJg6V60prsGhWvtsQxYroxoVQC8KAM+1XOhZW+aulajZf71sePMAXbeU1Vg1flXvZzwGz23LGt1UY0LgB/woLTr1LHsNRofwDmeNMgxQO58QZNwaZo0qGTqHRpLJpIMhxfgS0OepaZ/7P0Bw2bZKRVGhY8AAAAASUVORK5CYII="
       />
     </button>
-    <button
+    <button title="Add Code Manually"
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
       @click="() => {enterTOTP = true; displayOptions = false }"
     >
@@ -50,8 +51,14 @@
         />
       </svg>
     </button>
-    <button
+    <button title="Scan QR Code"
       class="btn btn-primary rounded-full w-20 h-20 flex justify-center items-center"
+      @click="() => {
+        if (totpQRScannerComponent) {
+          displayOptions = false;
+          totpQRScannerComponent.startQRScan();
+        }
+      }"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -75,10 +82,13 @@
 
 <script setup lang="ts">
 import getKeys from "~/totpFunctions/getKeys";
+import  TotpQRScanner  from "@/components/totpQRScanner.vue";
 
 const displayOptions = ref(false);
 const enterTOTP = useTOTPEntry();
 const totpKeys = useTOTPKeys();
+
+const totpQRScannerComponent = ref<typeof TotpQRScanner | null>(null);
 
 onMounted(async () => {
   totpKeys.value = await getKeys();
