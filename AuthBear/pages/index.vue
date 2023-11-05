@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <TotpCodeForm v-if="enterTOTP === true" />
+    <TotpCodeForm v-if="enterTOTP == true" />
   </ClientOnly>
 
   <div class="w-full h-full absolute" @click="displayOptions = false">
